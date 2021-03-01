@@ -1,0 +1,8 @@
+header      33 bytes
+SAR       2540 bytes
+zeros        2 bytes
+ALTIMETER  433 bytes  (should be 434)
+BAND       378 bytes  (2 * 3 * 63)
+BAND2      378 bytes  begins with 10 bytes of defective
+
+ZERO       332 bytes

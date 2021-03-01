@@ -1,0 +1,56 @@
+NASA Planetary Data System, MicroWave Sub-Node
+
+Mission:      Venera 15/16
+Phase:        Mapping
+Instrument:   Microwave Radiometer
+Dataset:      Venera Radiometer Measurements
+Origin:       Moscow Power Institute
+Cognizant:    Levchenko (for Acad. Bogomolov)
+Size:         5.8 Mbytes (original), 2.1 Mbytes (compressed)
+Format:       BINARY
+Prepared by:  Peter G. Ford
+
+Data file "mpi-venus-alt.dat" contains radiometry measurements made
+by both spacecraft. 
+
+File Format:
+
+  The file contains lines of ASCII characters in the following format:
+
+	mm dd nn xxxxx yyyyy xxx.xxx yy.yyy vvv hhh aa.aa
+
+          mm - month of spacecraft periapsis
+          dd - day of spacecraft periapsis
+          nn - spacecraft ID (15 or 16)
+       xxxxx - x-coordinate of antenna boresight
+       yyyyy - y-coordinate of antenna boresight
+      xx.xxx - latitude of antenna boresight (deg)
+    yyyy.yyy - longitude of antenna boresight (deg)
+         vvv - brightness temperature (K), vertical polarization
+         hhh - brightness temperature (K), horizontal polarization
+       aa.aa - incidence angle
+
+  Each line contains 49 characters. The xxxxx and yyyyy fields
+  represent the boresight coordinates in a polar stereographic
+  projection, related to latitude and longitude as follows:
+
+	lon = atan2(-xxxxx, yyyyy)
+	lat = asin((a*a-yyyy*yyyy)/(a*a+yyyy*yyyy))
+  where
+	a = 8192*cos(lon)
+
+Coordinate System:
+
+  Venera latitudes and longitudes are expressed in the IAU (1982)
+  approved coordinate system (Davies, M.E. et al, "Report of the IAU
+  Working Group on Cartographic Coordinates and Rotational Elements
+  of the Planets and Satellites: 1982"; Celestial Mechanics, Vol.
+  29, 1983, p. 309-321).
+
+  The following equation transforms the Venera coordinate system into
+  the "VBF85" system used by Magellan:
+
+    /x\         / 0.999997087 -0.002380124 -0.000398768 \   /x\
+    |y|       = | 0.002379790  0.999996819 -0.000836184 | * |y|
+    \z/VBF85    \ 0.000400757  0.000835233  0.999999571 /   \z/Venera
+
